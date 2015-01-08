@@ -1,0 +1,97 @@
+﻿@model TestResult
+
+@{
+    ViewBag.Title = "详情";
+}
+
+<h2>@ViewBag.Name:@ViewBag.Title</h2>
+
+<table>
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.TestTime)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.TestCode)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.ProductTypeId)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.LineNumberId)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.TestClassNumberId)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.JumperUserId)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Result)
+            </th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td>
+                @Html.DisplayFor(model => model.TestTime)
+            </td>
+            <td>
+                @Html.DisplayFor(model => model.TestCode)
+            </td>
+            <td>
+                @Html.DisplayFor(model => model.ProductType.Name)
+            </td>
+            <td>
+                @Html.DisplayFor(model => model.LineNumber.Name)
+            </td>
+            <td>
+                @Html.DisplayFor(model => model.TestClassNumber.Name)
+            </td>
+            <td>
+                @Html.DisplayFor(model => model.JumperUser.UserName)
+            </td>
+            <td>
+                @{
+                    if (Model.Result)
+                    {
+                        <span>不合格</span>
+                    }
+                    else
+                    {
+                        <span>合格</span>
+                    }
+                }
+            </td>
+        </tr>
+    </tbody>
+</table>
+@{   
+    int i = 1;
+    int j = 1;
+    <table>
+        <thead>
+            <tr>
+                @foreach (var item in Model.TestResultValues)
+                {
+                    <th>Value @i</th>
+                    i++;
+                }
+            </tr>
+        </thead>
+        <tbody>
+            <tr> 
+                @foreach (var item in Model.TestResultValues)
+                {
+                    <td>@string.Format("{0:0.##}", item.MarkValue)</td>
+                    j++;
+                }
+            </tr>
+        </tbody>
+    </table>
+    <img src="@Url.Content("~/UploadedFolder/" + Model.TestImg)" />
+}
+<p>
+    <a href="@Url.Content((string)ViewBag.ReturnUrl)">返回</a>
+</p>
