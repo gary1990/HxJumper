@@ -392,7 +392,6 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="Properties\PublishProfiles\" />
     <Folder Include="UploadedFolder\" />
     <Folder Include="Views\Api\" />
     <Folder Include="Views\LineNumber\" />
