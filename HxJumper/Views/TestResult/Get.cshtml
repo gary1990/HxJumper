@@ -2,6 +2,14 @@
 @{
     string returnUrl = Url.Action((((RouteValueDictionary)(ViewBag.RV))["returnRoot"]).ToString(), (RouteValueDictionary)(ViewBag.RV));
     Layout = null;
+
+    var totalResultCount = ViewBag.TotalResultCount;
+    var passResultCount = ViewBag.PassResultCount;
+    var passPercent = ViewBag.PassPercent;
+}
+@if (passPercent != null)
+{
+    <div style="text-align:center;font-size:large;color:green;"><marquee direction="left">总产量：@totalResultCount，合格量：@passResultCount，合格率：@string.Format("{0:0.##}", passPercent)%</marquee> </div>
 }
 @Html.Partial("PageLink")
 <table>
@@ -24,6 +32,9 @@
             </th>
             <th>
                 @Html.DisplayNameFor(model => model.Result)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.RemarkMessageId)
             </th>
             <th></th>
         </tr>
@@ -56,6 +67,9 @@
                     {
                         <span style="color:red;">不合格</span>
                     }
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.RemarkMessage.Name)
                 </td>
                 <td>
                     <div class="groupOperation">

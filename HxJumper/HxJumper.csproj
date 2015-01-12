@@ -39,6 +39,9 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="DotNet.Highcharts">
+      <HintPath>C:\Users\GARY\Desktop\DotNet.Highcharts.dll</HintPath>
+    </Reference>
     <Reference Include="Ionic.Zip">
       <HintPath>C:\Users\GARY\Desktop\Ionic.Zip.dll</HintPath>
     </Reference>
@@ -173,6 +176,7 @@
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\LineNumberController.cs" />
     <Compile Include="Controllers\QualityManageHomeController.cs" />
+    <Compile Include="Controllers\RemarkMessageController.cs" />
     <Compile Include="Controllers\SystemHomeController.cs" />
     <Compile Include="Controllers\TestClassNumberController.cs" />
     <Compile Include="Controllers\TestManageHomeController.cs" />
@@ -187,6 +191,10 @@
     <Compile Include="Migrations\201412300933396_InitialCreate.cs" />
     <Compile Include="Migrations\201412300933396_InitialCreate.Designer.cs">
       <DependentUpon>201412300933396_InitialCreate.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201501121524001_add_remarkmessge_testresult_fields.cs" />
+    <Compile Include="Migrations\201501121524001_add_remarkmessge_testresult_fields.Designer.cs">
+      <DependentUpon>201501121524001_add_remarkmessge_testresult_fields.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
@@ -217,6 +225,107 @@
     <Content Include="Content\bootstrap.min.css" />
     <Content Include="Content\customCss\melon.css" />
     <Content Include="Content\customCss\peach.css" />
+    <Content Include="Content\Highcharts-3.0.10\examples\area-basic\index.htm" />
+    <Content Include="Content\Highcharts-3.0.10\examples\area-inverted\index.htm" />
+    <Content Include="Content\Highcharts-3.0.10\examples\area-missing\index.htm" />
+    <Content Include="Content\Highcharts-3.0.10\examples\area-negative\index.htm" />
+    <Content Include="Content\Highcharts-3.0.10\examples\area-stacked-percent\index.htm" />
+    <Content Include="Content\Highcharts-3.0.10\examples\area-stacked\index.htm" />
+    <Content Include="Content\Highcharts-3.0.10\examples\arearange-line\index.htm" />
+    <Content Include="Content\Highcharts-3.0.10\examples\arearange\index.htm" />
+    <Content Include="Content\Highcharts-3.0.10\examples\areaspline\index.htm" />
+    <Content Include="Content\Highcharts-3.0.10\examples\bar-basic\index.htm" />
+    <Content Include="Content\Highcharts-3.0.10\examples\bar-negative-stack\index.htm" />
+    <Content Include="Content\Highcharts-3.0.10\examples\bar-stacked\index.htm" />
+    <Content Include="Content\Highcharts-3.0.10\examples\box-plot\index.htm" />
+    <Content Include="Content\Highcharts-3.0.10\examples\bubble-3d\index.htm" />
+    <Content Include="Content\Highcharts-3.0.10\examples\bubble\index.htm" />
+    <Content Include="Content\Highcharts-3.0.10\examples\column-basic\index.htm" />
+    <Content Include="Content\Highcharts-3.0.10\examples\column-drilldown\index.htm" />
+    <Content Include="Content\Highcharts-3.0.10\examples\column-negative\index.htm" />
+    <Content Include="Content\Highcharts-3.0.10\examples\column-parsed\index.htm" />
+    <Content Include="Content\Highcharts-3.0.10\examples\column-rotated-labels\index.htm" />
+    <Content Include="Content\Highcharts-3.0.10\examples\column-stacked-and-grouped\index.htm" />
+    <Content Include="Content\Highcharts-3.0.10\examples\column-stacked-percent\index.htm" />
+    <Content Include="Content\Highcharts-3.0.10\examples\column-stacked\index.htm" />
+    <Content Include="Content\Highcharts-3.0.10\examples\columnrange\index.htm" />
+    <Content Include="Content\Highcharts-3.0.10\examples\combo-dual-axes\index.htm" />
+    <Content Include="Content\Highcharts-3.0.10\examples\combo-multi-axes\index.htm" />
+    <Content Include="Content\Highcharts-3.0.10\examples\combo-regression\index.htm" />
+    <Content Include="Content\Highcharts-3.0.10\examples\combo\index.htm" />
+    <Content Include="Content\Highcharts-3.0.10\examples\dynamic-click-to-add\index.htm" />
+    <Content Include="Content\Highcharts-3.0.10\examples\dynamic-master-detail\index.htm" />
+    <Content Include="Content\Highcharts-3.0.10\examples\dynamic-update\index.htm" />
+    <Content Include="Content\Highcharts-3.0.10\examples\error-bar\index.htm" />
+    <Content Include="Content\Highcharts-3.0.10\examples\funnel\index.htm" />
+    <Content Include="Content\Highcharts-3.0.10\examples\gauge-clock\index.htm" />
+    <Content Include="Content\Highcharts-3.0.10\examples\gauge-dual\index.htm" />
+    <Content Include="Content\Highcharts-3.0.10\examples\gauge-speedometer\index.htm" />
+    <Content Include="Content\Highcharts-3.0.10\examples\gauge-vu-meter\index.htm" />
+    <Content Include="Content\Highcharts-3.0.10\examples\line-ajax\index.htm" />
+    <Content Include="Content\Highcharts-3.0.10\examples\line-basic\index.htm" />
+    <Content Include="Content\Highcharts-3.0.10\examples\line-labels\index.htm" />
+    <Content Include="Content\Highcharts-3.0.10\examples\line-log-axis\index.htm" />
+    <Content Include="Content\Highcharts-3.0.10\examples\line-time-series\index.htm" />
+    <Content Include="Content\Highcharts-3.0.10\examples\pie-basic\index.htm" />
+    <Content Include="Content\Highcharts-3.0.10\examples\pie-donut\index.htm" />
+    <Content Include="Content\Highcharts-3.0.10\examples\pie-drilldown\index.htm" />
+    <Content Include="Content\Highcharts-3.0.10\examples\pie-gradient\index.htm" />
+    <Content Include="Content\Highcharts-3.0.10\examples\pie-legend\index.htm" />
+    <Content Include="Content\Highcharts-3.0.10\examples\pie-semi-circle\index.htm" />
+    <Content Include="Content\Highcharts-3.0.10\examples\polar-spider\index.htm" />
+    <Content Include="Content\Highcharts-3.0.10\examples\polar-wind-rose\index.htm" />
+    <Content Include="Content\Highcharts-3.0.10\examples\polar\index.htm" />
+    <Content Include="Content\Highcharts-3.0.10\examples\pyramid\index.htm" />
+    <Content Include="Content\Highcharts-3.0.10\examples\renderer\index.htm" />
+    <Content Include="Content\Highcharts-3.0.10\examples\scatter\index.htm" />
+    <Content Include="Content\Highcharts-3.0.10\examples\sparkline\index.htm" />
+    <Content Include="Content\Highcharts-3.0.10\examples\spline-inverted\index.htm" />
+    <Content Include="Content\Highcharts-3.0.10\examples\spline-irregular-time\index.htm" />
+    <Content Include="Content\Highcharts-3.0.10\examples\spline-plot-bands\index.htm" />
+    <Content Include="Content\Highcharts-3.0.10\examples\spline-symbols\index.htm" />
+    <Content Include="Content\Highcharts-3.0.10\examples\waterfall\index.htm" />
+    <Content Include="Content\Highcharts-3.0.10\exporting-server\phantomjs\data.js" />
+    <Content Include="Content\Highcharts-3.0.10\exporting-server\phantomjs\highcharts-3d.js" />
+    <Content Include="Content\Highcharts-3.0.10\exporting-server\phantomjs\highcharts-convert.js" />
+    <Content Include="Content\Highcharts-3.0.10\exporting-server\phantomjs\highcharts-more.js" />
+    <Content Include="Content\Highcharts-3.0.10\exporting-server\phantomjs\highcharts.js" />
+    <Content Include="Content\Highcharts-3.0.10\exporting-server\phantomjs\jquery.1.9.1.min.js" />
+    <Content Include="Content\Highcharts-3.0.10\exporting-server\phantomjs\map.js" />
+    <Content Include="Content\Highcharts-3.0.10\gfx\vml-radial-gradient.png" />
+    <Content Include="Content\Highcharts-3.0.10\graphics\skies.jpg" />
+    <Content Include="Content\Highcharts-3.0.10\graphics\snow.png" />
+    <Content Include="Content\Highcharts-3.0.10\graphics\sun.png" />
+    <Content Include="Content\Highcharts-3.0.10\index.htm" />
+    <Content Include="Content\Highcharts-3.0.10\js\adapters\mootools-adapter.js" />
+    <Content Include="Content\Highcharts-3.0.10\js\adapters\mootools-adapter.src.js" />
+    <Content Include="Content\Highcharts-3.0.10\js\adapters\prototype-adapter.js" />
+    <Content Include="Content\Highcharts-3.0.10\js\adapters\prototype-adapter.src.js" />
+    <Content Include="Content\Highcharts-3.0.10\js\adapters\standalone-framework.js" />
+    <Content Include="Content\Highcharts-3.0.10\js\adapters\standalone-framework.src.js" />
+    <Content Include="Content\Highcharts-3.0.10\js\grouped-categories.js" />
+    <Content Include="Content\Highcharts-3.0.10\js\highcharts-all.js" />
+    <Content Include="Content\Highcharts-3.0.10\js\highcharts-more.js" />
+    <Content Include="Content\Highcharts-3.0.10\js\highcharts-more.src.js" />
+    <Content Include="Content\Highcharts-3.0.10\js\highcharts.js" />
+    <Content Include="Content\Highcharts-3.0.10\js\highcharts.src.js" />
+    <Content Include="Content\Highcharts-3.0.10\js\modules\canvas-tools.js" />
+    <Content Include="Content\Highcharts-3.0.10\js\modules\canvas-tools.src.js" />
+    <Content Include="Content\Highcharts-3.0.10\js\modules\data.js" />
+    <Content Include="Content\Highcharts-3.0.10\js\modules\data.src.js" />
+    <Content Include="Content\Highcharts-3.0.10\js\modules\drilldown.js" />
+    <Content Include="Content\Highcharts-3.0.10\js\modules\drilldown.src.js" />
+    <Content Include="Content\Highcharts-3.0.10\js\modules\exporting.js" />
+    <Content Include="Content\Highcharts-3.0.10\js\modules\exporting.src.js" />
+    <Content Include="Content\Highcharts-3.0.10\js\modules\funnel.js" />
+    <Content Include="Content\Highcharts-3.0.10\js\modules\funnel.src.js" />
+    <Content Include="Content\Highcharts-3.0.10\js\modules\no-data-to-display.js" />
+    <Content Include="Content\Highcharts-3.0.10\js\modules\no-data-to-display.src.js" />
+    <Content Include="Content\Highcharts-3.0.10\js\themes\dark-blue.js" />
+    <Content Include="Content\Highcharts-3.0.10\js\themes\dark-green.js" />
+    <Content Include="Content\Highcharts-3.0.10\js\themes\gray.js" />
+    <Content Include="Content\Highcharts-3.0.10\js\themes\grid.js" />
+    <Content Include="Content\Highcharts-3.0.10\js\themes\skies.js" />
     <Content Include="Content\img\bg-action.png" />
     <Content Include="Content\img\bg-active.png" />
     <Content Include="Content\img\bg-blue.png" />
@@ -304,6 +413,9 @@
     <Content Include="Content\Site.css" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
+    <Content Include="Content\Highcharts-3.0.10\examples\line-ajax\analytics.tsv" />
+    <Content Include="Content\Highcharts-3.0.10\exporting-server\phantomjs\readme.md" />
+    <Content Include="Content\Highcharts-3.0.10\exporting-server\php\php-batik\index.php" />
     <None Include="Properties\PublishProfiles\10.10.2.51.pubxml" />
     <None Include="Properties\PublishProfiles\ManualPublish.pubxml" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
@@ -398,6 +510,7 @@
     <Folder Include="UploadedFolder\" />
     <Folder Include="Views\Api\" />
     <Folder Include="Views\LineNumber\" />
+    <Folder Include="Views\RemarkMessage\" />
     <Folder Include="Views\TestClassNumber\" />
   </ItemGroup>
   <ItemGroup>
@@ -410,6 +523,9 @@
   <ItemGroup>
     <EmbeddedResource Include="Migrations\201412300933396_InitialCreate.resx">
       <DependentUpon>201412300933396_InitialCreate.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201501121524001_add_remarkmessge_testresult_fields.resx">
+      <DependentUpon>201501121524001_add_remarkmessge_testresult_fields.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

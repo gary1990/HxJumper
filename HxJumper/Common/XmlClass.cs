@@ -54,6 +54,20 @@ namespace HxJumper.Common
         [XmlElement("LineNumber")]
         public List<LineNumberXml> lineNumberXml { get; set; }
     }
+    public class RemarkMessageXml
+    {
+        public int Id { get; set; }
+        public string Name { get; set; }
+    }
+    public class RemarkMessageXmls
+    {
+        public RemarkMessageXmls()
+        {
+            remarkMessageXml = new List<RemarkMessageXml> { };
+        }
+        [XmlElement("RemarkMessage")]
+        public List<RemarkMessageXml> remarkMessageXml { get; set; }
+    }
     //login success returned xml's formart
     [XmlRoot("Result")]
     public class LoginReturnXml 
@@ -64,6 +78,7 @@ namespace HxJumper.Common
             productTypeXmls = new ProductTypeXmls();
             testClassNumberXmls = new TestClassNumberXmls();
             lineNumberXmls = new LineNumberXmls();
+            remarkMessageXmls = new RemarkMessageXmls();
         }
         public string Message { get; set; }
         //return ProductList xml
@@ -75,5 +90,8 @@ namespace HxJumper.Common
         //return LineNumber xml
         [XmlElement("LineNumbers")]
         public LineNumberXmls lineNumberXmls { get; set; }
+        //return RemarkMessage xml
+        [XmlElement("RemarkMessages")]
+        public RemarkMessageXmls remarkMessageXmls { get; set; }
     }
 }

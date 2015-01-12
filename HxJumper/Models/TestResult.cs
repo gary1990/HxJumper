@@ -12,6 +12,8 @@ namespace HxJumper.Models
         public TestResult() 
         {
             Result = false;
+            IsLatest = true;
+            NotStatistic = false;
             TestResultValues = new List<TestResultValue>();
         }
         public int Id { get; set; }
@@ -24,7 +26,7 @@ namespace HxJumper.Models
         public int TestClassNumberId { get; set; }
         [DisplayName("序列号")]
         public string TestCode { get; set; }
-        [DisplayName("备注")]
+        [DisplayName("失败原因")]
         public int? RemarkMessageId { get; set; }
         [DisplayName("测试图像")]
         public string TestImg { get; set; }
@@ -34,6 +36,10 @@ namespace HxJumper.Models
         public int LineNumberId { get; set; }
         [DisplayName("测试员")]
         public string JumperUserId { get; set; }
+        [DisplayName("最新记录")]//equals to is not retest
+        public bool IsLatest { get; set; }
+        [DisplayName("不统计")]//default false, 0; if true, 1, do not static
+        public bool NotStatistic { get; set; }
         public virtual JumperUser JumperUser { get; set; }
         public virtual LineNumber LineNumber { get; set; }
         public virtual RemarkMessage RemarkMessage { get; set; }

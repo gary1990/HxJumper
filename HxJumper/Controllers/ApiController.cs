@@ -37,6 +37,7 @@ namespace HxJumper.Controllers
             List<ProductType> productTypes = unitOfWork.ProductTypeRepository.Get(a => a.IsDeleted == false).ToList();
             List<TestClassNumber> testClassNumbers = unitOfWork.TestClassNumberRepository.Get(a => a.IsDeleted == false).ToList();
             List<LineNumber> lineNumbers = unitOfWork.LineNumberRepository.Get(a => a.IsDeleted == false).ToList();
+            List<RemarkMessage> remarkMessages = unitOfWork.RemarkMessageRepository.Get(a => a.IsDeleted == false).ToList();
             
             LoginReturnXml loginReturnXml = new LoginReturnXml();
             foreach (var productType in productTypes) 
@@ -65,6 +66,15 @@ namespace HxJumper.Controllers
                     Name = lineNumber.Name
                 };
                 loginReturnXml.lineNumberXmls.lineNumberXml.Add(lineNumberXml);
+            }
+            foreach (var remarkMessage in remarkMessages)
+            {
+                RemarkMessageXml remarkMessageXml = new RemarkMessageXml
+                {
+                    Id = remarkMessage.Id,
+                    Name = remarkMessage.Name
+                };
+                loginReturnXml.remarkMessageXmls.remarkMessageXml.Add(remarkMessageXml);
             }
 
             return new XmlResult<LoginReturnXml>()
@@ -176,6 +186,8 @@ namespace HxJumper.Controllers
                 string testResultStr;
                 string lineNumberStr;
                 string testerJobNumberStr;
+                string remarkMessageIdStr;
+                string notStaticStr;
                 string line = string.Empty;
                 string[] lineArr = null;
                 int i = 0;
@@ -195,7 +207,7 @@ namespace HxJumper.Controllers
                         return new XmlResult<SingleResultXml>() { Data = result };
                     }
                     lineArr = line.Split(',');
-                    if(lineArr.Count() != 7)
+                    if(lineArr.Count() != 9)
                     {
                         srGeneralCsv.Close();
                         result.Message = "general.csv test result content error";
@@ -208,6 +220,8 @@ namespace HxJumper.Controllers
                     testResultStr = lineArr[4];
                     lineNumberStr = lineArr[5];
                     testerJobNumberStr = lineArr[6];
+                    remarkMessageIdStr = lineArr[7];
+                    notStaticStr = lineArr[8];
                     srGeneralCsv.Close();
                     //convert testTimeStr to testTime
                     DateTime testTime;
@@ -300,17 +314,96 @@ namespace HxJumper.Controllers
                     {
                         jumperUserId = testerDb.Id;
                     }
-                    TestResult testResultAdd = new TestResult 
+                    //get RemarkMessage
+                    int remarkMessageId = 0;
+                    if(String.IsNullOrEmpty(remarkMessageIdStr) || remarkMessageIdStr == "")
                     {
-                        TestTime = testTime,
-                        ProductTypeId = productTypeId,
-                        TestClassNumberId = testClassNumberId,
-                        TestCode = testCode,
-                        TestImg = imagePath,
-                        Result = testResult,
-                        LineNumberId = lineNumberId,
-                        JumperUserId = jumperUserId
-                    };
+                        //do nothing
+                    }
+                    else
+                    {
+                        if (!int.TryParse(remarkMessageIdStr, out remarkMessageId))
+                        {
+                            result.Message = "general.csv RemarkMessage ID parse failed";
+                            return new XmlResult<SingleResultXml>() { Data = result };
+                        }
+                        else
+                        {
+                            RemarkMessage remarkMessageDb = unitOfWork.RemarkMessageRepository.Get(a => a.Id == remarkMessageId && a.IsDeleted == false).SingleOrDefault();
+                            if (remarkMessageDb == null)
+                            {
+                                result.Message = "general.csv RemarkMessage can not find";
+                                return new XmlResult<SingleResultXml>() { Data = result };
+                            }
+                        }
+                    }
+                    //get NotStatistic
+                    bool notStatistic = false;
+                    int notStatisticInt = 0;//0 is Statistic, false; 1 is not Statistic
+                    if (!int.TryParse(notStaticStr, out notStatisticInt))
+                    {
+                        result.Message = "general.csv NotStatistic  parse failed";
+                        return new XmlResult<SingleResultXml>() { Data = result };
+                    }
+                    else 
+                    {
+                        if (notStatisticInt == 1)
+                        {
+                            notStatistic = true;
+                        }
+                    }
+                    //justify if IsLatest
+                    var testResultDbs = unitOfWork.TestResultRepository.Get(a => a.TestCode == testCode).ToList();
+                    if (testResultDbs != null)
+                    {
+                        foreach (var testResultDb in testResultDbs)
+                        {
+                            try
+                            {
+                                testResultDb.IsLatest = false;
+                                unitOfWork.DbSaveChanges();
+                            }
+                            catch (Exception /*e*/)
+                            {
+                                result.Message = "update old TestResult record IsLatest field failed";
+                                return new XmlResult<SingleResultXml>() { Data = result };
+                            }
+                        }
+                    }
+                    //TestResult Object
+                    TestResult testResultAdd;
+                    //if remarkMessageId == 0
+                    if (remarkMessageId == 0)
+                    {
+                        testResultAdd = new TestResult
+                        {
+                            TestTime = testTime,
+                            ProductTypeId = productTypeId,
+                            TestClassNumberId = testClassNumberId,
+                            TestCode = testCode,
+                            TestImg = imagePath,
+                            Result = testResult,
+                            LineNumberId = lineNumberId,
+                            JumperUserId = jumperUserId,
+                            NotStatistic = notStatistic
+                        };
+                    }
+                    else 
+                    {
+                        testResultAdd = new TestResult
+                        {
+                            TestTime = testTime,
+                            ProductTypeId = productTypeId,
+                            TestClassNumberId = testClassNumberId,
+                            TestCode = testCode,
+                            TestImg = imagePath,
+                            Result = testResult,
+                            LineNumberId = lineNumberId,
+                            JumperUserId = jumperUserId,
+                            RemarkMessageId = remarkMessageId,
+                            NotStatistic = notStatistic
+                        };
+                    }
                     try
                     {
                         unitOfWork.TestResultRepository.Insert(testResultAdd);

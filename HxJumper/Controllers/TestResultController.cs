@@ -38,9 +38,21 @@ namespace HxJumper.Controllers
 
         public ActionResult Get(string returnRoot, string actionAjax = "", int page = 1, string filter = null, bool export = false)
         {
-            var results = Common<TestResult>.GetQuery(unitOfWork, filter);
+            var results = Common<TestResult>.GetQuery(unitOfWork, filter)
+                .Where(a => a.IsLatest == true && a.NotStatistic == false);
 
             results = results.OrderByDescending(a => a.TestTime);
+
+            var totalResultCount = results.Count();
+            if (totalResultCount != 0)
+            {
+                var passResultCount = results.Where(a => a.Result == true).Count();
+                var passPercent = ((decimal)passResultCount / (decimal)totalResultCount) * 100;
+                ViewBag.TotalResultCount = totalResultCount;
+                ViewBag.PassResultCount = passResultCount;
+                ViewBag.PassPercent = passPercent;
+            }
+
             //not export
             if (!export)
             {
@@ -65,13 +77,14 @@ namespace HxJumper.Controllers
                     titleRow.CreateCell(3).SetCellValue("测试班号");
                     titleRow.CreateCell(4).SetCellValue("测试结果");
                     titleRow.CreateCell(5).SetCellValue("序列号");
-                    //value start from 6
+                    //value start from 7
                     int valTitleStart = 6;
                     for (int i = 1; i <= maxVals; i++ ) 
                     {
                         titleRow.CreateCell(valTitleStart).SetCellValue("Value" + i);
                         valTitleStart++;
                     }
+                    titleRow.CreateCell(valTitleStart).SetCellValue("失败原因");
                     //value row start from 1
                     int valueRowStart = 1;
                     //red backgroud style
@@ -113,6 +126,7 @@ namespace HxJumper.Controllers
                             valRow.CreateCell(valValRow).SetCellValue(valItem.MarkValue.ToString());
                             valValRow++;
                         }
+                        valRow.CreateCell(valValRow).SetCellValue((item.RemarkMessage == null) ? "" : item.RemarkMessage.Name);
                         valueRowStart++;
                     }
                     if (!workbook.IsWriteProtected)

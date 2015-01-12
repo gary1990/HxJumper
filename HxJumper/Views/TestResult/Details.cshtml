@@ -30,6 +30,9 @@
             <th>
                 @Html.DisplayNameFor(model => model.Result)
             </th>
+            <th>
+                @Html.DisplayNameFor(model => model.RemarkMessageId)
+            </th>
         </tr>
     </thead>
     <tbody>
@@ -56,13 +59,16 @@
                 @{
                     if (Model.Result)
                     {
-                        <span>不合格</span>
+                        <span>合格</span>
                     }
                     else
                     {
-                        <span>合格</span>
+                        <span>不合格</span>
                     }
                 }
+            </td>
+            <td>
+                @Html.DisplayFor(model => model.RemarkMessage.Name)
             </td>
         </tr>
     </tbody>

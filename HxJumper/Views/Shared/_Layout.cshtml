@@ -47,6 +47,7 @@
                         <ul class="sideMenu">
                             <li class="@(sideMenuPath == "测试班号" ? "current" : "")">@Html.AuthorizeActionLink("测试班号", "Index", "TestClassNumber")</li>
                             <li class="@(sideMenuPath == "产线编号" ? "current" : "")">@Html.AuthorizeActionLink("产线编号", "Index", "LineNumber")</li>
+                            <li class="@(sideMenuPath == "失败原因" ? "current" : "")">@Html.AuthorizeActionLink("失败原因", "Index", "RemarkMessage")</li>
                         </ul>
                     </li>
                 }
