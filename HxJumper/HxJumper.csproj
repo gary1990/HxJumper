@@ -417,6 +417,7 @@
     <Content Include="Content\Highcharts-3.0.10\exporting-server\phantomjs\readme.md" />
     <Content Include="Content\Highcharts-3.0.10\exporting-server\php\php-batik\index.php" />
     <None Include="Properties\PublishProfiles\10.10.2.51.pubxml" />
+    <None Include="Properties\PublishProfiles\10.10.2.51_jumper.pubxml" />
     <None Include="Properties\PublishProfiles\ManualPublish.pubxml" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Scripts\custom.js" />
