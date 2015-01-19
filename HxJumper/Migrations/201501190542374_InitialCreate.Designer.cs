@@ -7,13 +7,13 @@ namespace HxJumper.Migrations
     using System.Resources;
     
     [GeneratedCode("EntityFramework.Migrations", "6.0.0-20911")]
-    public sealed partial class add_remarkmessge_testresult_fields : IMigrationMetadata
+    public sealed partial class InitialCreate : IMigrationMetadata
     {
-        private readonly ResourceManager Resources = new ResourceManager(typeof(add_remarkmessge_testresult_fields));
+        private readonly ResourceManager Resources = new ResourceManager(typeof(InitialCreate));
         
         string IMigrationMetadata.Id
         {
-            get { return "201501121524001_add_remarkmessge_testresult_fields"; }
+            get { return "201501190542374_InitialCreate"; }
         }
         
         string IMigrationMetadata.Source

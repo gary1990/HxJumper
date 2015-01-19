@@ -25,10 +25,10 @@ namespace HxJumper.Controllers
         public TestResultController()
         {
             path.Add("质量管理");
-            path.Add("测试记录");
+            path.Add("VNA测试记录");
             ViewBag.path = path;
-            ViewBag.Name = "测试记录";
-            ViewBag.Title = "测试记录";
+            ViewBag.Name = "VNA测试记录";
+            ViewBag.Title = "VNA测试记录";
         }
         public ActionResult Index(int page = 1, string filter = null)
         {
@@ -65,7 +65,7 @@ namespace HxJumper.Controllers
                 string excelName = DateTime.Now.ToString("yyyyMMddHHmmss") + ".xls";
                 if (results.Count() > 0)
                 {
-                    var maxVals = results.Max(a => a.TestResultValues.Count);
+                    //var maxVals = results.Max(a => a.TestResultValues.Count);
                     MemoryStream stream = new MemoryStream();
                     HSSFWorkbook workbook = new HSSFWorkbook();
                     workbook.CreateSheet("sheet1");
@@ -77,15 +77,15 @@ namespace HxJumper.Controllers
                     titleRow.CreateCell(3).SetCellValue("测试班号");
                     titleRow.CreateCell(4).SetCellValue("测试结果");
                     titleRow.CreateCell(5).SetCellValue("序列号");
-                    //value start from 7
-                    int valTitleStart = 6;
-                    for (int i = 1; i <= maxVals; i++ ) 
-                    {
-                        titleRow.CreateCell(valTitleStart).SetCellValue("Value" + i);
-                        valTitleStart++;
-                    }
-                    titleRow.CreateCell(valTitleStart).SetCellValue("失败原因");
-                    //value row start from 1
+                    ////value start from 7
+                    //int valTitleStart = 6;
+                    //for (int i = 1; i <= maxVals; i++ ) 
+                    //{
+                    //    titleRow.CreateCell(valTitleStart).SetCellValue("Value" + i);
+                    //    valTitleStart++;
+                    //}
+                    titleRow.CreateCell(6).SetCellValue("失败原因");
+                    ////value row start from 1
                     int valueRowStart = 1;
                     //red backgroud style
                     var redBgStyle = workbook.CreateCellStyle();
@@ -99,7 +99,7 @@ namespace HxJumper.Controllers
                     //HSSFFont font1 = hssfworkbook.CreateFont();
                     //font1.Color = NPOI.HSSF.Util.HSSFColor.YELLOW.index;
                     //style1.SetFont(font1);
-                    foreach(var item in results)
+                    foreach (var item in results)
                     {
                         IRow valRow = worksheet.CreateRow(valueRowStart);
                         valRow.CreateCell(0).SetCellValue(item.TestTime.ToString());
@@ -112,7 +112,7 @@ namespace HxJumper.Controllers
                             passCell.CellStyle = greenBgStyle;
                             passCell.SetCellValue("合格");
                         }
-                        else 
+                        else
                         {
                             var failCell = valRow.CreateCell(4);
                             failCell.CellStyle = redBgStyle;
@@ -121,11 +121,11 @@ namespace HxJumper.Controllers
                         valRow.CreateCell(5).SetCellValue(item.TestCode);
                         //value row start from 6 in per record
                         int valValRow = 6;
-                        foreach(var valItem in item.TestResultValues)
-                        {
-                            valRow.CreateCell(valValRow).SetCellValue(valItem.MarkValue.ToString());
-                            valValRow++;
-                        }
+                        //foreach (var valItem in item.TestResultValues)
+                        //{
+                        //    valRow.CreateCell(valValRow).SetCellValue(valItem.MarkValue.ToString());
+                        //    valValRow++;
+                        //}
                         valRow.CreateCell(valValRow).SetCellValue((item.RemarkMessage == null) ? "" : item.RemarkMessage.Name);
                         valueRowStart++;
                     }
@@ -157,7 +157,7 @@ namespace HxJumper.Controllers
         [ValidateAntiForgeryToken]
         public virtual ActionResult Details(int Id = 0, string returnUrl = "Index") 
         {
-            var result = unitOfWork.TestResultRepository.Get(a => a.Id == Id, null, "TestResultValues,JumperUser,LineNumber,TestClassNumber,ProductType").SingleOrDefault();
+            var result = unitOfWork.TestResultRepository.Get(a => a.Id == Id, null, "TestResultItems,JumperUser,LineNumber,TestClassNumber,ProductType").SingleOrDefault();
             if (result == null)
             {
                 CommonMsg.RMError(this);

@@ -45,6 +45,9 @@
     <Reference Include="Ionic.Zip">
       <HintPath>C:\Users\GARY\Desktop\Ionic.Zip.dll</HintPath>
     </Reference>
+    <Reference Include="itextsharp">
+      <HintPath>..\packages\iTextSharp.5.5.4\lib\itextsharp.dll</HintPath>
+    </Reference>
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="NPOI">
       <HintPath>C:\Users\GARY\Desktop\NPOI.dll</HintPath>
@@ -181,6 +184,7 @@
     <Compile Include="Controllers\TestClassNumberController.cs" />
     <Compile Include="Controllers\TestManageHomeController.cs" />
     <Compile Include="Controllers\TestResultController.cs" />
+    <Compile Include="Controllers\TestResultPimController.cs" />
     <Compile Include="Controllers\UserProfileController.cs" />
     <Compile Include="Filter\PermissionAuthorizeAttribute.cs" />
     <Compile Include="Global.asax.cs">
@@ -188,21 +192,19 @@
     </Compile>
     <Compile Include="Interface\IEditable.cs" />
     <Compile Include="Lib\Common.cs" />
-    <Compile Include="Migrations\201412300933396_InitialCreate.cs" />
-    <Compile Include="Migrations\201412300933396_InitialCreate.Designer.cs">
-      <DependentUpon>201412300933396_InitialCreate.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201501121524001_add_remarkmessge_testresult_fields.cs" />
-    <Compile Include="Migrations\201501121524001_add_remarkmessge_testresult_fields.Designer.cs">
-      <DependentUpon>201501121524001_add_remarkmessge_testresult_fields.cs</DependentUpon>
+    <Compile Include="Migrations\201501190542374_InitialCreate.cs" />
+    <Compile Include="Migrations\201501190542374_InitialCreate.Designer.cs">
+      <DependentUpon>201501190542374_InitialCreate.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\Base\BaseModel.cs" />
+    <Compile Include="Models\Carrier.cs" />
     <Compile Include="Models\Constant\Constant.cs" />
     <Compile Include="Models\DAL\GenericRepository.cs" />
     <Compile Include="Models\DAL\JumperContext.cs" />
     <Compile Include="Models\DAL\UnitOfWork.cs" />
+    <Compile Include="Models\ImOrder.cs" />
     <Compile Include="Models\Initializer\JumperInitailizer.cs" />
     <Compile Include="Models\LineNumber.cs" />
     <Compile Include="Models\RemarkMessage.cs" />
@@ -211,7 +213,12 @@
     <Compile Include="Models\Permission.cs" />
     <Compile Include="Models\ProductType.cs" />
     <Compile Include="Models\TestClassNumber.cs" />
+    <Compile Include="Models\TestEquipment.cs" />
+    <Compile Include="Models\TestItem.cs" />
     <Compile Include="Models\TestResult.cs" />
+    <Compile Include="Models\TestResultItem.cs" />
+    <Compile Include="Models\TestResultPim.cs" />
+    <Compile Include="Models\TestResultPimPoint.cs" />
     <Compile Include="Models\TestResultValue.cs" />
     <Compile Include="Models\ViewModels\Msg.cs" />
     <Compile Include="Models\ViewModels\XmlResult.cs" />
@@ -505,6 +512,9 @@
     <Content Include="Views\TestResult\Get.cshtml" />
     <Content Include="Views\TestResult\Index.cshtml" />
     <Content Include="Views\TestResult\Details.cshtml" />
+    <Content Include="Views\TestResultPim\Index.cshtml" />
+    <Content Include="Views\TestResultPim\Get.cshtml" />
+    <Content Include="Views\TestResultPim\Details.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -522,11 +532,8 @@
     <None Include="Project_Readme.html" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Migrations\201412300933396_InitialCreate.resx">
-      <DependentUpon>201412300933396_InitialCreate.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201501121524001_add_remarkmessge_testresult_fields.resx">
-      <DependentUpon>201501121524001_add_remarkmessge_testresult_fields.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\201501190542374_InitialCreate.resx">
+      <DependentUpon>201501190542374_InitialCreate.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

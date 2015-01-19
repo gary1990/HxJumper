@@ -74,29 +74,60 @@
     </tbody>
 </table>
 @{   
-    int i = 1;
-    int j = 1;
-    <table>
-        <thead>
-            <tr>
-                @foreach (var item in Model.TestResultValues)
+    <img src="@Url.Content("~/UploadedFolder/VNA/" + Model.TestImg)" />
+    foreach(var labelTitle in Model.TestResultItems)
+    {
+        <table>
+            <thead>
+                <tr>
+                    <th>Label Title</th>
+                    <th>测试结果</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>@labelTitle.TestItem.Name</td>
+                    <td>
+                        @{
+                            if (labelTitle.TestResultItemResult)
+                            {
+                                <span>合格</span>
+                            }
+                            else
+                            {
+                                <span>不合格</span>
+                            }
+                        }
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+        <table>
+            <thead>
+                <tr>
+                    <th>Channel</th>
+                    <th>Trace</th>
+                    <th>XValue</th>
+                    <th>YValue</th>
+                    <th>Parameter</th>
+                    <th>Formart</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var labelTitleVal in labelTitle.TestResultValues)
                 {
-                    <th>Value @i</th>
-                    i++;
+                    <tr>
+                        <td>@labelTitleVal.Channel</td>
+                        <td>@labelTitleVal.Trace</td>
+                        <td>@labelTitleVal.XValue @Html.GetUnitStr(labelTitleVal.XValueUnit)</td>
+                        <td>@labelTitleVal.MarkValue</td>
+                        <td>@labelTitleVal.Paremeter</td>
+                        <td>@labelTitleVal.Formart</td>
+                    </tr>
                 }
-            </tr>
-        </thead>
-        <tbody>
-            <tr> 
-                @foreach (var item in Model.TestResultValues)
-                {
-                    <td>@string.Format("{0:0.##}", item.MarkValue)</td>
-                    j++;
-                }
-            </tr>
-        </tbody>
-    </table>
-    <img src="@Url.Content("~/UploadedFolder/" + Model.TestImg)" />
+            </tbody>
+        </table>
+    }
 }
 <p>
     <a href="@Url.Content((string)ViewBag.ReturnUrl)">返回</a>

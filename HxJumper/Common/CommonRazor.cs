@@ -1,4 +1,5 @@
-﻿using System;
+﻿using HxJumper.Models.Constant;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
@@ -55,6 +56,80 @@ namespace System.Web.Mvc.Html
                 hours.Add(new SelectListItem { Text = i.ToString(), Value = i.ToString() });
             }
             return hours;
+        }
+
+        public static string GetUnitStr(this HtmlHelper htmlHelper, Unit unit) 
+        {
+            var unitStr = "";
+            switch (unit)
+            {
+                case Unit.G:
+                    unitStr = "G";
+                    break;
+                case Unit.M:
+                    unitStr = "M";
+                    break;
+                case Unit.k:
+                    unitStr = "k";
+                    break;
+                case Unit.h:
+                    unitStr = "百";
+                    break;
+                case Unit.da:
+                    unitStr = "";
+                    break;
+                case Unit.d:
+                    unitStr = "10^1";
+                    break;
+                case Unit.c:
+                    unitStr = "10^-2";
+                    break;
+                case Unit.m:
+                    unitStr = "m";
+                    break;
+                case Unit.μ:
+                    unitStr = "μ";
+                    break;
+                case Unit.n:
+                    unitStr = "n";
+                    break;
+                default:
+                    break;
+            }
+            return unitStr;
+        }
+        public static string GetImUnitStr(this HtmlHelper htmlHelper, ImUnit imUnit)
+        {
+            var imUnitStr = "";
+            switch (imUnit)
+            {
+                case ImUnit.dBc:
+                    imUnitStr = "dBc";
+                    break;
+                case ImUnit.dBm:
+                    imUnitStr = "dBm";
+                    break;
+                default:
+                    break;
+            }
+            return imUnitStr;
+        }
+
+        public static string GetMeasStr(this HtmlHelper htmlHelper, TestMeans testMeas)
+        {
+            var testMeasStr = "";
+            switch (testMeas)
+            {
+                case TestMeans.Sweep:
+                    testMeasStr = "SWEEP";
+                    break;
+                case TestMeans.Single:
+                    testMeasStr = "SINGLE";
+                    break;
+                default:
+                    break;
+            }
+            return testMeasStr;
         }
     }
 

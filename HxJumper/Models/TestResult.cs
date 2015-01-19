@@ -14,7 +14,7 @@ namespace HxJumper.Models
             Result = false;
             IsLatest = true;
             NotStatistic = false;
-            TestResultValues = new List<TestResultValue>();
+            TestResultItems = new List<TestResultItem>();
         }
         public int Id { get; set; }
         [Required]
@@ -45,6 +45,6 @@ namespace HxJumper.Models
         public virtual RemarkMessage RemarkMessage { get; set; }
         public virtual TestClassNumber TestClassNumber { get; set; }
         public virtual ProductType ProductType { get; set; }
-        public virtual ICollection<TestResultValue> TestResultValues { get; set; }
+        public virtual ICollection<TestResultItem> TestResultItems { get; set; }
     }
 }

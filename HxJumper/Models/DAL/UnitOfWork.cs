@@ -17,8 +17,15 @@ namespace HxJumper.Models.DAL
         private GenericRepository<RemarkMessage> remarkMessageRepository;
         private GenericRepository<TestClassNumber> testClassNumberRepository;
         private GenericRepository<TestResult> testResultRepository;
+        public GenericRepository<TestResultItem> testResultItemRepository;
         private GenericRepository<TestResultValue> testResultValueRepository;
         private GenericRepository<LineNumber> lineNumberRepository;
+        private GenericRepository<TestItem> testItemRepository;
+        private GenericRepository<TestResultPim> testResultPimRepository;
+        private GenericRepository<TestEquipment> testEquipmentRepository;
+        private GenericRepository<ImOrder> imOrderRepository;
+        private GenericRepository<Carrier> carrierRepository;
+        private GenericRepository<TestResultPimPoint> testResultPimPointRepository;
         public GenericRepository<JumperUser> JumperUserRepository 
         {
             get 
@@ -103,6 +110,18 @@ namespace HxJumper.Models.DAL
             }
         }
 
+        public GenericRepository<TestResultItem> TestResultItemRepository 
+        {
+            get
+            {
+                if (this.testResultItemRepository == null)
+                {
+                    this.testResultItemRepository = new GenericRepository<TestResultItem>(context);
+                }
+                return testResultItemRepository;
+            }
+        }
+
         public GenericRepository<TestResultValue> TestResultValueRepository
         {
             get
@@ -123,6 +142,78 @@ namespace HxJumper.Models.DAL
                     this.lineNumberRepository = new GenericRepository<LineNumber>(context);
                 }
                 return lineNumberRepository;
+            }
+        }
+
+        public GenericRepository<TestItem> TestItemRepository 
+        {
+            get 
+            {
+                if(this.testItemRepository == null)
+                {
+                    this.testItemRepository = new GenericRepository<TestItem>(context);
+                }
+                return testItemRepository;
+            }
+        }
+
+        public GenericRepository<TestResultPim> TestResultPimRepository
+        {
+            get
+            {
+                if (this.testResultPimRepository == null)
+                {
+                    this.testResultPimRepository = new GenericRepository<TestResultPim>(context);
+                }
+                return testResultPimRepository;
+            }
+        }
+
+        public GenericRepository<TestEquipment> TestEquipmentRepository
+        {
+            get
+            {
+                if (this.testEquipmentRepository == null)
+                {
+                    this.testEquipmentRepository = new GenericRepository<TestEquipment>(context);
+                }
+                return testEquipmentRepository;
+            }
+        }
+
+        public GenericRepository<ImOrder> ImOrderRepository
+        {
+            get
+            {
+                if (this.imOrderRepository == null)
+                {
+                    this.imOrderRepository = new GenericRepository<ImOrder>(context);
+                }
+                return imOrderRepository;
+            }
+        }
+
+        public GenericRepository<Carrier> CarrierRepository
+        {
+            get
+            {
+                if (this.carrierRepository == null)
+                {
+                    this.carrierRepository = new GenericRepository<Carrier>(context);
+                }
+                return carrierRepository;
+            }
+        }
+
+        public GenericRepository<TestResultPimPoint> TestResultPimPointRepository
+        {
+            get
+            {
+                if (this.testResultPimPointRepository == null)
+                {
+                    this.testResultPimPointRepository = new GenericRepository<TestResultPimPoint>(context);
+                }
+                return testResultPimPointRepository;
             }
         }
         public void JumperSaveChanges() 
