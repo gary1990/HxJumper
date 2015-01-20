@@ -192,9 +192,9 @@
     </Compile>
     <Compile Include="Interface\IEditable.cs" />
     <Compile Include="Lib\Common.cs" />
-    <Compile Include="Migrations\201501190542374_InitialCreate.cs" />
-    <Compile Include="Migrations\201501190542374_InitialCreate.Designer.cs">
-      <DependentUpon>201501190542374_InitialCreate.cs</DependentUpon>
+    <Compile Include="Migrations\201501200302159_InitialCreate.cs" />
+    <Compile Include="Migrations\201501200302159_InitialCreate.Designer.cs">
+      <DependentUpon>201501200302159_InitialCreate.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
@@ -532,8 +532,8 @@
     <None Include="Project_Readme.html" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Migrations\201501190542374_InitialCreate.resx">
-      <DependentUpon>201501190542374_InitialCreate.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\201501200302159_InitialCreate.resx">
+      <DependentUpon>201501200302159_InitialCreate.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

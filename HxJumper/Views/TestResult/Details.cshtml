@@ -105,8 +105,8 @@
         <table>
             <thead>
                 <tr>
-                    <th>Channel</th>
-                    <th>Trace</th>
+                    <th>Trace Number</th>
+                    <th>Mark Number</th>
                     <th>XValue</th>
                     <th>YValue</th>
                     <th>Parameter</th>
@@ -117,8 +117,8 @@
                 @foreach (var labelTitleVal in labelTitle.TestResultValues)
                 {
                     <tr>
-                        <td>@labelTitleVal.Channel</td>
-                        <td>@labelTitleVal.Trace</td>
+                        <td>@labelTitleVal.TraceNumber</td>
+                        <td>@labelTitleVal.MarkNumber</td>
                         <td>@labelTitleVal.XValue @Html.GetUnitStr(labelTitleVal.XValueUnit)</td>
                         <td>@labelTitleVal.MarkValue</td>
                         <td>@labelTitleVal.Paremeter</td>

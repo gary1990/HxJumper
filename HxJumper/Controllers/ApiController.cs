@@ -491,22 +491,22 @@ namespace HxJumper.Controllers
                                     continue;
                                 }
                                 perItemLineArr = perItemLine.Split(',');
-                                //ChannelStr
-                                string channelStr = perItemLineArr[0];
-                                int channel = 0;
-                                if (!int.TryParse(channelStr, out channel))
+                                //TraceNumberStr
+                                string traceNumberStr = perItemLineArr[0];
+                                int traceNumber = 0;
+                                if (!int.TryParse(traceNumberStr, out traceNumber))
                                 {
                                     srLabelTitleCsv.Close();
-                                    result.Message = sublabelTitleFile + " line " + lineNumResult + " Channel parse failed";
+                                    result.Message = sublabelTitleFile + " line " + lineNumResult + " TraceNumber parse failed";
                                     return new XmlResult<SingleResultXml>() { Data = result };
                                 }
-                                //TraceStr
-                                string traceStr = perItemLineArr[1];
-                                int trace = 0;
-                                if (!int.TryParse(traceStr, out trace))
+                                //MarkNumberStr
+                                string markNumberStr = perItemLineArr[1];
+                                int markNumber = 0;
+                                if (!int.TryParse(markNumberStr, out markNumber))
                                 {
                                     srLabelTitleCsv.Close();
-                                    result.Message = sublabelTitleFile + " line " + lineNumResult + " Trace parse failed";
+                                    result.Message = sublabelTitleFile + " line " + lineNumResult + " MarkNumber parse failed";
                                     return new XmlResult<SingleResultXml>() { Data = result };
                                 }
                                 //XValue
@@ -545,8 +545,8 @@ namespace HxJumper.Controllers
                                     TestResultValue testResultValue = new TestResultValue 
                                     {
                                        TestResultItemId = testResultItemId,
-                                       Channel = channel,
-                                       Trace = trace,
+                                       TraceNumber = traceNumber,
+                                       MarkNumber = markNumber,
                                        XValue = xValue,
                                        XValueUnit = xValueUnit,
                                        MarkValue = yValue,

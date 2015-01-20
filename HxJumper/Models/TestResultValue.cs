@@ -12,10 +12,10 @@ namespace HxJumper.Models
         public int Id { get; set; }
         public int TestResultItemId { get; set; }
         public virtual TestResultItem TestResultItem { get; set; }
-        [DisplayName("Channel")]
-        public int Channel { get; set; }
-        [DisplayName("Trace")]
-        public int Trace { get; set; }
+        [DisplayName("Trace Number")]
+        public int TraceNumber { get; set; }
+        [DisplayName("Mark Number")]
+        public int MarkNumber { get; set; }
         [DisplayName("Channel值")]
         public decimal XValue { get; set; }
         public Unit XValueUnit { get; set; }

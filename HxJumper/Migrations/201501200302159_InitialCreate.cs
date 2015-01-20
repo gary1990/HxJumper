@@ -269,8 +269,8 @@ namespace HxJumper.Migrations
                     {
                         Id = c.Int(nullable: false, identity: true),
                         TestResultItemId = c.Int(nullable: false),
-                        Channel = c.Int(nullable: false),
-                        Trace = c.Int(nullable: false),
+                        TraceNumber = c.Int(nullable: false),
+                        MarkNumber = c.Int(nullable: false),
                         XValue = c.Decimal(nullable: false, precision: 15, scale: 4),
                         XValueUnit = c.Int(nullable: false),
                         MarkValue = c.Decimal(nullable: false, precision: 15, scale: 4),
