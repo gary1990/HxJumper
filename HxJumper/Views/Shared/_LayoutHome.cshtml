@@ -104,16 +104,15 @@
     </header>
     <div id="body">
         @RenderSection("featured", required: false)
-        <section class="content-wrapper main-content clear-fix">
+        <section>
             <div style="width: 100%">
-                <div style="width: 96%; margin: 0 2%;" class="box">
-                    @Html.Partial("Msg")
+                <div>
                     @RenderBody()
+                    @Html.Partial("Msg")
                 </div>
             </div>
         </section>
     </div>
-    <div class="float-left" style="height: 100px; clear: both">&nbsp;</div>
     <footer>
         <div class="content-wrapper" style="clear: both">
             <div class="float-left">

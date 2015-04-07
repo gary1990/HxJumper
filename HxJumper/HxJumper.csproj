@@ -515,6 +515,7 @@
     <Content Include="Views\TestResultPim\Index.cshtml" />
     <Content Include="Views\TestResultPim\Get.cshtml" />
     <Content Include="Views\TestResultPim\Details.cshtml" />
+    <Content Include="Views\Shared\_LayoutHome.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

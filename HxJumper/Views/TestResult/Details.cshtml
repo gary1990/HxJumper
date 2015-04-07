@@ -80,14 +80,14 @@
         <table>
             <thead>
                 <tr>
-                    <th>Label Title</th>
-                    <th>测试结果</th>
+                    <th colspan="3">Label Title</th>
+                    <th colspan="3">测试结果</th>
                 </tr>
             </thead>
             <tbody>
                 <tr>
-                    <td>@labelTitle.TestItem.Name</td>
-                    <td>
+                    <td colspan="3">@labelTitle.TestItem.Name</td>
+                    <td colspan="3">
                         @{
                             if (labelTitle.TestResultItemResult)
                             {
@@ -101,8 +101,6 @@
                     </td>
                 </tr>
             </tbody>
-        </table>
-        <table>
             <thead>
                 <tr>
                     <th>Trace Number</th>
