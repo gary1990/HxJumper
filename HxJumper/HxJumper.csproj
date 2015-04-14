@@ -192,9 +192,9 @@
     </Compile>
     <Compile Include="Interface\IEditable.cs" />
     <Compile Include="Lib\Common.cs" />
-    <Compile Include="Migrations\201501200302159_InitialCreate.cs" />
-    <Compile Include="Migrations\201501200302159_InitialCreate.Designer.cs">
-      <DependentUpon>201501200302159_InitialCreate.cs</DependentUpon>
+    <Compile Include="Migrations\201504140157555_InitialCreate.cs" />
+    <Compile Include="Migrations\201504140157555_InitialCreate.Designer.cs">
+      <DependentUpon>201504140157555_InitialCreate.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
@@ -425,6 +425,7 @@
     <Content Include="Content\Highcharts-3.0.10\exporting-server\php\php-batik\index.php" />
     <None Include="Properties\PublishProfiles\10.10.2.51.pubxml" />
     <None Include="Properties\PublishProfiles\10.10.2.51_jumper.pubxml" />
+    <None Include="Properties\PublishProfiles\manual.pubxml" />
     <None Include="Properties\PublishProfiles\ManualPublish.pubxml" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Scripts\custom.js" />
@@ -533,8 +534,8 @@
     <None Include="Project_Readme.html" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Migrations\201501200302159_InitialCreate.resx">
-      <DependentUpon>201501200302159_InitialCreate.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\201504140157555_InitialCreate.resx">
+      <DependentUpon>201504140157555_InitialCreate.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
