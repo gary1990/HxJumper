@@ -8,7 +8,7 @@ using System.Web;
 
 namespace HxJumper.Models.Initializer
 {
-    public class JumperInitailizer : DropCreateDatabaseIfModelChanges<JumperContext>
+    public class JumperInitailizer : CreateDatabaseIfNotExists<JumperContext>
     {
         protected override void Seed(JumperContext db)
         {

@@ -13,7 +13,7 @@ namespace HxJumper.Migrations
         
         string IMigrationMetadata.Id
         {
-            get { return "201501200302159_InitialCreate"; }
+            get { return "201504140157555_InitialCreate"; }
         }
         
         string IMigrationMetadata.Source
