@@ -68,6 +68,21 @@ namespace HxJumper.Common
         [XmlElement("RemarkMessage")]
         public List<RemarkMessageXml> remarkMessageXml { get; set; }
     }
+    public class LimitValueXml
+    {
+        public int Id { get; set; }
+        public string MinVal { get; set; }
+        public string MaxVal { get; set; }
+    }
+    public class LimitValueXmls 
+    {
+        public LimitValueXmls() 
+        {
+            limitValueXml = new List<LimitValueXml> { };
+        }
+        [XmlElement("LimitValue")]
+        public List<LimitValueXml> limitValueXml { get; set; }
+    }
     //login success returned xml's formart
     [XmlRoot("Result")]
     public class LoginReturnXml 
@@ -79,6 +94,7 @@ namespace HxJumper.Common
             testClassNumberXmls = new TestClassNumberXmls();
             lineNumberXmls = new LineNumberXmls();
             remarkMessageXmls = new RemarkMessageXmls();
+            limitValueXmls = new LimitValueXmls();
         }
         public string Message { get; set; }
         //return ProductList xml
@@ -93,5 +109,8 @@ namespace HxJumper.Common
         //return RemarkMessage xml
         [XmlElement("RemarkMessages")]
         public RemarkMessageXmls remarkMessageXmls { get; set; }
+        //return RemarkMessage xml
+        [XmlElement("LimitValues")]
+        public LimitValueXmls limitValueXmls { get; set; }
     }
 }

@@ -103,16 +103,27 @@ namespace HxJumper.Lib
                 {
                     var propertyNames = item.Split('.');
                     Expression left = pe;
+                    Expression upperRight = null;
 
                     foreach (var prop in propertyNames)
                     {
                         left = Expression.PropertyOrField(left, prop);
+
+                        var type = left.Type.Name;
+                        var typeFullName = left.Type.FullName;
+
+                        if (type == "Nullable`1" && typeFullName.Contains("System.Decimal"))
+                        {
+                            Expression right = Expression.Constant(Decimal.Parse(target));
+                            wordsExps.Add(MyEqual(left, right));
+                        }
+                        else 
+                        {
+                            upperRight = Expression.Constant(target.ToUpper());
+                            Expression upperLeft = Expression.Call(left, typeof(string).GetMethod("ToUpper", System.Type.EmptyTypes));
+                            wordsExps.Add(Expression.Call(upperLeft, method, upperRight));
+                        }
                     }
-                    Expression upperLeft = Expression.Call(left, typeof(string).GetMethod("ToUpper", System.Type.EmptyTypes));
-
-                    var upperRight = Expression.Constant(target.ToUpper());
-
-                    wordsExps.Add(Expression.Call(upperLeft, method, upperRight));
                 }
 
                 Expression finalExp = wordsExps[0];

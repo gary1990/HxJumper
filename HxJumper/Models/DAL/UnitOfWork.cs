@@ -26,6 +26,7 @@ namespace HxJumper.Models.DAL
         private GenericRepository<ImOrder> imOrderRepository;
         private GenericRepository<Carrier> carrierRepository;
         private GenericRepository<TestResultPimPoint> testResultPimPointRepository;
+        private GenericRepository<LimitValue> limitValueRepository;
         public GenericRepository<JumperUser> JumperUserRepository 
         {
             get 
@@ -216,6 +217,19 @@ namespace HxJumper.Models.DAL
                 return testResultPimPointRepository;
             }
         }
+
+        public GenericRepository<LimitValue> LimitValueRepository
+        {
+            get
+            {
+                if (this.limitValueRepository == null)
+                {
+                    this.limitValueRepository = new GenericRepository<LimitValue>(context);
+                }
+                return limitValueRepository;
+            }
+        }
+
         public void JumperSaveChanges() 
         {
             foreach(var deleteEntity in context.ChangeTracker.Entries<BaseModel>())

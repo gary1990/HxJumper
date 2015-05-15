@@ -16,7 +16,10 @@
     <table>
         <tr>
             <td>
-                <span class="searchLabel">关键词</span>
+                <span class="searchLabel">名称</span>
+            </td>
+            <td>
+                <span class="searchLabel">序列号</span>
             </td>
             <td>
                 <span class="searchLabel">已删除</span>
@@ -29,6 +32,9 @@
             @Html.Hidden("filter")
             <td>
                 @Html.TextBox("Name@%", null, new { @class = "filter" })
+            </td>
+            <td>
+                @Html.TextBox("SerialNumber@%", null, new { @class = "filter" })
             </td>
             <td>
                 @Html.CheckBox("IsDeleted@=", new { @class = "filter"})

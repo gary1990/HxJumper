@@ -27,9 +27,9 @@ namespace HxJumper.Controllers
     public class ApiController : Controller
     {
         private UnitOfWork unitOfWork = new UnitOfWork();
-        public ActionResult ClientLogin(string jobNumber = null, string passWord = null)
+        public ActionResult ClientLogin(string jobNumber = null, string passWord = null, string serialNumber = null)
         {
-            string userCheckResult = CheckUser(jobNumber, passWord);
+            string userCheckResult = CheckUser(jobNumber, passWord, serialNumber);
             if (userCheckResult != "true") 
             {
                 SingleResultXml result = new SingleResultXml()
@@ -46,6 +46,7 @@ namespace HxJumper.Controllers
             List<TestClassNumber> testClassNumbers = unitOfWork.TestClassNumberRepository.Get(a => a.IsDeleted == false).ToList();
             List<LineNumber> lineNumbers = unitOfWork.LineNumberRepository.Get(a => a.IsDeleted == false).ToList();
             List<RemarkMessage> remarkMessages = unitOfWork.RemarkMessageRepository.Get(a => a.IsDeleted == false).ToList();
+            List<LimitValue> limitValues = unitOfWork.LimitValueRepository.Get(a => a.IsDeleted == false).ToList();
             
             LoginReturnXml loginReturnXml = new LoginReturnXml();
             foreach (var productType in productTypes) 
@@ -83,6 +84,16 @@ namespace HxJumper.Controllers
                     Name = remarkMessage.Name
                 };
                 loginReturnXml.remarkMessageXmls.remarkMessageXml.Add(remarkMessageXml);
+            }
+            foreach (var limitValue in limitValues)
+            {
+                LimitValueXml limitValueXml = new LimitValueXml 
+                {
+                    Id = limitValue.Id,
+                    MinVal = limitValue.MinVal == null ? "NAN" : limitValue.MinVal.ToString(),
+                    MaxVal = limitValue.MaxVal == null ? "NAN" : limitValue.MaxVal.ToString()
+                };
+                loginReturnXml.limitValueXmls.limitValueXml.Add(limitValueXml);
             }
 
             return new XmlResult<LoginReturnXml>()
@@ -328,8 +339,26 @@ namespace HxJumper.Controllers
                     {
                         if (!int.TryParse(remarkMessageIdStr, out remarkMessageId))
                         {
-                            result.Message = "general.csv RemarkMessage ID parse failed";
-                            return new XmlResult<SingleResultXml>() { Data = result };
+                            RemarkMessage remarkMessageDb = unitOfWork.RemarkMessageRepository.Get(a => a.Name == remarkMessageIdStr && a.IsDeleted == false).SingleOrDefault();
+                            if (remarkMessageDb == null)
+                            {
+                                try
+                                {
+                                    RemarkMessage remarkMessageAdd = new RemarkMessage { Name = remarkMessageIdStr };
+                                    unitOfWork.RemarkMessageRepository.Insert(remarkMessageAdd);
+                                    unitOfWork.DbSaveChanges();
+                                    remarkMessageId = remarkMessageAdd.Id;
+                                }
+                                catch (Exception /*e*/)
+                                {
+                                    result.Message = "Insert RemarkMessage failed";
+                                    return new XmlResult<SingleResultXml>() { Data = result };
+                                }
+                            }
+                            else 
+                            {
+                                remarkMessageId = remarkMessageDb.Id;
+                            }
                         }
                         else
                         {
@@ -929,8 +958,8 @@ namespace HxJumper.Controllers
                         string name = txtLineArr[2];
                         string serailNumber = txtLineArr[txtLineArr.Count() - 1];
                         //set TestResultPim.TestEquipmentId
-                        TestEquipment testEquipment = new TestEquipment() { Name = name.Substring(0, name.Length -1), SerialNumber = serailNumber};
-                        var testEquipmentDb = unitOfWork.TestEquipmentRepository.Get(a => a.Name == name && a.SerialNumber == serailNumber).SingleOrDefault();
+                        TestEquipment testEquipment = new TestEquipment() { Name = name.Substring(0, name.Length -1), SerialNumber = serailNumber, isVna = false, IsDeleted = false};
+                        var testEquipmentDb = unitOfWork.TestEquipmentRepository.Get(a => a.Name == name.Substring(0, name.Length - 1) && a.SerialNumber == serailNumber).First();
                         if (testEquipmentDb == null)
                         {
                             try 
@@ -1077,14 +1106,12 @@ namespace HxJumper.Controllers
             return new XmlResult<SingleResultXml>() { Data = result };
         }
 
-        private string CheckUser(string jobNumber = null, string passWord = null) 
+        private string CheckUser(string jobNumber = null, string passWord = null, string serialNumber = null) 
         {
             string result = "true";
-            var s = String.IsNullOrWhiteSpace(jobNumber);
-            var s1 = String.IsNullOrWhiteSpace(passWord);
-            if (String.IsNullOrWhiteSpace(jobNumber) || String.IsNullOrWhiteSpace(passWord))
+            if (String.IsNullOrWhiteSpace(jobNumber) || String.IsNullOrWhiteSpace(passWord) || String.IsNullOrWhiteSpace(serialNumber))
             {
-                result = "jobnumer or password can not be null.";
+                result = "jobnumer or password or serialNumber can not be null.";
             }
             else
             {
@@ -1094,6 +1121,7 @@ namespace HxJumper.Controllers
                     if (user == null)
                     {
                         result = "jobnumber or password incorrect.";
+                        return result;
                     }
                     else
                     {
@@ -1102,7 +1130,14 @@ namespace HxJumper.Controllers
                         if (user == null)
                         {
                             result = "jobnumber or password incorrect.";
+                            return result;
                         }
+                    }
+
+                    var equipment = unitOfWork.TestEquipmentRepository.Get(a => a.SerialNumber.ToUpper() == (serialNumber.ToUpper()) && a.isVna == true && a.IsDeleted == false).SingleOrDefault();
+                    if (equipment == null) {
+                        result = "can not find such equipment, may be you forgot add it to server";
+                        return result;
                     }
                 }
                 catch (Exception e)

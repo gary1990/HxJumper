@@ -1,0 +1,26 @@
+﻿@model LimitValue
+@Html.HiddenFor(model => model.Id)
+
+@Html.Action("AbstractEdit", Model.Id)
+
+<div class="editor-label">
+    @Html.LabelFor(model => model.MinVal)
+</div>
+<div class="editor-field">
+    @Html.EditorFor(model => model.MinVal)
+    @Html.ValidationMessageFor(model => model.MinVal)
+</div>
+<div class="editor-label">
+    @Html.LabelFor(model => model.MaxVal)
+</div>
+<div class="editor-field">
+    @Html.EditorFor(model => model.MaxVal)
+    @Html.ValidationMessageFor(model => model.MaxVal)
+</div>
+<div class="editor-label">
+    @Html.LabelFor(model => model.IsDeleted)
+</div>
+<div class="editor-field">
+    @Html.EditorFor(model => model.IsDeleted)
+    @Html.ValidationMessageFor(model => model.IsDeleted)
+</div>

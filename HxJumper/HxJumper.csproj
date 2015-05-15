@@ -177,11 +177,13 @@
     <Compile Include="Controllers\ApiController.cs" />
     <Compile Include="Controllers\BaseModelController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\LimitValueController.cs" />
     <Compile Include="Controllers\LineNumberController.cs" />
     <Compile Include="Controllers\QualityManageHomeController.cs" />
     <Compile Include="Controllers\RemarkMessageController.cs" />
     <Compile Include="Controllers\SystemHomeController.cs" />
     <Compile Include="Controllers\TestClassNumberController.cs" />
+    <Compile Include="Controllers\TestEquipmentController.cs" />
     <Compile Include="Controllers\TestManageHomeController.cs" />
     <Compile Include="Controllers\TestResultController.cs" />
     <Compile Include="Controllers\TestResultPimController.cs" />
@@ -196,6 +198,10 @@
     <Compile Include="Migrations\201504140157555_InitialCreate.Designer.cs">
       <DependentUpon>201504140157555_InitialCreate.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201505150725170_addLimitValue-equipmentcategory.cs" />
+    <Compile Include="Migrations\201505150725170_addLimitValue-equipmentcategory.Designer.cs">
+      <DependentUpon>201505150725170_addLimitValue-equipmentcategory.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\Base\BaseModel.cs" />
@@ -206,6 +212,7 @@
     <Compile Include="Models\DAL\UnitOfWork.cs" />
     <Compile Include="Models\ImOrder.cs" />
     <Compile Include="Models\Initializer\JumperInitailizer.cs" />
+    <Compile Include="Models\LimitValue.cs" />
     <Compile Include="Models\LineNumber.cs" />
     <Compile Include="Models\RemarkMessage.cs" />
     <Compile Include="Models\IdentityModels.cs" />
@@ -517,6 +524,26 @@
     <Content Include="Views\TestResultPim\Get.cshtml" />
     <Content Include="Views\TestResultPim\Details.cshtml" />
     <Content Include="Views\Shared\_LayoutHome.cshtml" />
+    <Content Include="Views\LimitValue\Abstract.cshtml" />
+    <Content Include="Views\LimitValue\AbstractEdit.cshtml" />
+    <Content Include="Views\LimitValue\Create.cshtml" />
+    <Content Include="Views\LimitValue\Delete.cshtml" />
+    <Content Include="Views\LimitValue\Edit.cshtml" />
+    <Content Include="Views\LimitValue\Get.cshtml" />
+    <Content Include="Views\LimitValue\Index.cshtml" />
+    <Content Include="Views\LimitValue\Restore.cshtml" />
+    <Content Include="Views\Shared\EditorTemplates\EditLimitValue.cshtml" />
+    <Content Include="Views\Shared\EditorTemplates\LimitValue.cshtml" />
+    <Content Include="Views\TestEquipment\Abstract.cshtml" />
+    <Content Include="Views\TestEquipment\AbstractEdit.cshtml" />
+    <Content Include="Views\TestEquipment\Create.cshtml" />
+    <Content Include="Views\TestEquipment\Delete.cshtml" />
+    <Content Include="Views\TestEquipment\Edit.cshtml" />
+    <Content Include="Views\TestEquipment\Get.cshtml" />
+    <Content Include="Views\TestEquipment\Index.cshtml" />
+    <Content Include="Views\TestEquipment\Restore.cshtml" />
+    <Content Include="Views\Shared\EditorTemplates\TestEquipment.cshtml" />
+    <Content Include="Views\Shared\EditorTemplates\EditTestEquipment.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -536,6 +563,9 @@
   <ItemGroup>
     <EmbeddedResource Include="Migrations\201504140157555_InitialCreate.resx">
       <DependentUpon>201504140157555_InitialCreate.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201505150725170_addLimitValue-equipmentcategory.resx">
+      <DependentUpon>201505150725170_addLimitValue-equipmentcategory.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
