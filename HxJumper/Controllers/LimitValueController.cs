@@ -24,10 +24,10 @@ namespace HxJumper.Controllers
         public LimitValueController() 
         {
             path.Add("测试管理");
-            path.Add("极限值");
+            path.Add("时域阻抗范围");
             ViewBag.path = path;
-            ViewBag.Name = "极限值";
-            ViewBag.Title = "极限值";
+            ViewBag.Name = "时域阻抗范围";
+            ViewBag.Title = "时域阻抗范围";
         }
         public virtual ActionResult Index(int page = 1, string filter = null)
         {
