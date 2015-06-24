@@ -959,7 +959,7 @@ namespace HxJumper.Controllers
                         string serailNumber = txtLineArr[txtLineArr.Count() - 1];
                         //set TestResultPim.TestEquipmentId
                         TestEquipment testEquipment = new TestEquipment() { Name = name.Substring(0, name.Length -1), SerialNumber = serailNumber, isVna = false, IsDeleted = false};
-                        var testEquipmentDb = unitOfWork.TestEquipmentRepository.Get(a => a.Name == name.Substring(0, name.Length - 1) && a.SerialNumber == serailNumber).First();
+                        var testEquipmentDb = unitOfWork.TestEquipmentRepository.Get(a => a.Name == name.Substring(0, name.Length - 1) && a.SerialNumber == serailNumber).FirstOrDefault();
                         if (testEquipmentDb == null)
                         {
                             try 
