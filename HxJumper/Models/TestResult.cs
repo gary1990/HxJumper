@@ -40,6 +40,8 @@ namespace HxJumper.Models
         public bool IsLatest { get; set; }
         [DisplayName("不统计")]//default false, 0; if true, 1, do not static
         public bool NotStatistic { get; set; }
+        [DisplayName("订单号")]
+        public string OrderNumber { get; set; }
         public virtual JumperUser JumperUser { get; set; }
         public virtual LineNumber LineNumber { get; set; }
         public virtual RemarkMessage RemarkMessage { get; set; }

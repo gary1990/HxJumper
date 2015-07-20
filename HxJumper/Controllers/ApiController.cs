@@ -203,6 +203,7 @@ namespace HxJumper.Controllers
                 string testerJobNumberStr;
                 string remarkMessageIdStr;
                 string notStaticStr;
+                string orderNumberStr = "";
                 string line = string.Empty;
                 string[] lineArr = null;
                 int i = 0;
@@ -222,7 +223,7 @@ namespace HxJumper.Controllers
                         return new XmlResult<SingleResultXml>() { Data = result };
                     }
                     lineArr = line.Split(',');
-                    if (lineArr.Count() != 9)
+                    if (lineArr.Count() != 10)
                     {
                         srGeneralCsv.Close();
                         result.Message = "general.csv test result content error";
@@ -237,6 +238,7 @@ namespace HxJumper.Controllers
                     testerJobNumberStr = lineArr[6];
                     remarkMessageIdStr = lineArr[7];
                     notStaticStr = lineArr[8];
+                    orderNumberStr = lineArr[9];
                     srGeneralCsv.Close();
                     //convert testTimeStr to testTime
                     DateTime testTime;
@@ -418,7 +420,8 @@ namespace HxJumper.Controllers
                             Result = testResult,
                             LineNumberId = lineNumberId,
                             JumperUserId = jumperUserId,
-                            NotStatistic = notStatistic
+                            NotStatistic = notStatistic,
+                            OrderNumber = orderNumberStr
                         };
                     }
                     else
@@ -434,7 +437,8 @@ namespace HxJumper.Controllers
                             LineNumberId = lineNumberId,
                             JumperUserId = jumperUserId,
                             RemarkMessageId = remarkMessageId,
-                            NotStatistic = notStatistic
+                            NotStatistic = notStatistic,
+                            OrderNumber = orderNumberStr
                         };
                     }
                     try
