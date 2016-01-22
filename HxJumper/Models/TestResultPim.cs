@@ -15,6 +15,7 @@ namespace HxJumper.Models
             IsLatest = true;
             Carriers = new List<Carrier> { };
             TestResultPimPoints = new List<TestResultPimPoint> { };
+            TestImages = new List<TestImage> { };
         }
         public int Id { get; set; }
         [DisplayName("测试时间")]
@@ -25,7 +26,7 @@ namespace HxJumper.Models
         public string JumperUserId { get; set; }
         public virtual JumperUser JumperUser { get; set; }
         [DisplayName("测试设备")]
-        public int TestEquipmentId { get; set; }
+        public int? TestEquipmentId { get; set; }
         public virtual TestEquipment TestEquipment { get; set; }
         [DisplayName("阶数")]
         public int ImOrderId { get; set; }
@@ -36,12 +37,12 @@ namespace HxJumper.Models
         public string TestDescription { get; set; }
         [DisplayName("测试结果")]
         public bool TestResult { get; set; }
-        [DisplayName("测试图像")]
-        public string TestImage { get; set; }
         public bool IsLatest { get; set; }
         [DisplayName("极限值")]
         public decimal LimitLine { get; set; }
+
         public virtual ICollection<Carrier> Carriers { get; set; }
         public virtual ICollection<TestResultPimPoint> TestResultPimPoints { get; set; }
+        public virtual ICollection<TestImage> TestImages { get; set; }
     }
 }

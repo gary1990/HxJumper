@@ -27,6 +27,8 @@ namespace HxJumper.Models.DAL
         private GenericRepository<Carrier> carrierRepository;
         private GenericRepository<TestResultPimPoint> testResultPimPointRepository;
         private GenericRepository<LimitValue> limitValueRepository;
+        private GenericRepository<TestImage> testImageRepository;
+
         public GenericRepository<JumperUser> JumperUserRepository 
         {
             get 
@@ -227,6 +229,18 @@ namespace HxJumper.Models.DAL
                     this.limitValueRepository = new GenericRepository<LimitValue>(context);
                 }
                 return limitValueRepository;
+            }
+        }
+
+        public GenericRepository<TestImage> TestImageRepository
+        {
+            get
+            {
+                if (this.testImageRepository == null)
+                {
+                    this.testImageRepository = new GenericRepository<TestImage>(context);
+                }
+                return testImageRepository;
             }
         }
 

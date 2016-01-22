@@ -33,6 +33,7 @@ namespace HxJumper.Models.DAL
         public DbSet<Carrier> Carrier { get; set; }
         public DbSet<TestResultPimPoint> TestResultPimPoint { get; set; }
         public DbSet<LimitValue> LimitValue { get; set; }
+        public DbSet<TestImage> TestImage { get; set; }
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
             base.OnModelCreating(modelBuilder);
